@@ -1,0 +1,41 @@
+
+name: Build pipeline
+on:
+  push:
+    branches:
+      - master
+env:
+  DOCKER_IMAGE: grajamca/spring-boot-splunk-integration
+  TAG: 1.0.0
+
+jobs:
+  setup-build-pipeline:
+    name: Setting up build pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code checkout
+        uses: actions/checkout@v2
+
+      - name: Code setup
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+          server-id: github
+          settings-path: ${{ github.workspace }}
+
+      - name: Package
+        run: mvn clean package -DskipTests
+
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Docker build
+        run: |
+          docker build -t $DOCKER_IMAGE:$TAG .
+      - name: Docker push
+        run: |
+          docker push $DOCKER_IMAGE:$TAG

@@ -13,6 +13,26 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-splunk-integration</name>
     <description>spring-boot-splunk-integration</description>
+
+    <developers>
+        <developer>
+            <id>GRajaMca</id>
+            <name>Raja Gandharaw (GRajaMca)</name>
+            <email>grajamcas@gmail.com</email>
+            <url>https://github.com/GRajaMca</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>India/New_Delhi</timezone>
+            <properties>
+                <picUrl>
+                    https://lh3.googleusercontent.com/-UWmec1rAMOg/AAAAAAAAAAI/AAAAAAAAABw/p6iLSKRyrJs/photo.jpg?sz=328
+                </picUrl>
+            </properties>
+        </developer>
+    </developers>
+
+
     <properties>
         <java.version>11</java.version>
         <logback.version>1.2.4</logback.version>
